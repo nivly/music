@@ -16,16 +16,18 @@
             <img width="40" class="bottom-image" src="/static/edit.png">
         </a>
     {% endif %}
-
-    <h1 class="display-5">{{blog.subject}}</h1>
-    <p class="fs-3 text-break">
-        {% if blog.author.image %}
-            <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(blog.author.image.read())}}">
-        {% endif %}
-            {{blog.content}} <br>
-            {{blog.tag}}
-
-    </p>
+    <p class="display-5">{{blog.subject}}</p>
+    <p class="fs-3">
+       
+        price:{{blog.content}} 
+        <button type="button" class="btn btn-secondary">Buy now!</button>
+        <br>
+            
+            {% if blog.image %}
+                <img width="220" class="img-thumbnail me-2" src="data:image;base64,{{base64encode(blog.image.read())}}">
+            {% endif %}
+    </p>    
+    {{blog.tag}}
     <a href="/comment/new/{{blog.id}}" class="btn btn-primary btn-sm" role="button">New Comment</a>
 
     {% if comments %}

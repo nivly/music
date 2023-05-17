@@ -5,3 +5,6 @@ from flask import render_template
 @app.route('/')
 def index():
     return render_template('index.html')
+@app.route('/projectsform')
+def proj():
+    return render_template('projectsform.html')

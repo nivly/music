@@ -4,41 +4,29 @@
 
 <div class="row">
     <div class="col-4">
-        <h1 class="display-1">All Blogs</h1>
+        <h1 class="display-1">Merch</h1>
     </div>
     <div class="col">
-        <a href="/blog/new" class="btn btn-primary btn-sm mt-5" role="button">New Blog</a>
+        <a href="/blog/new" class="btn btn-primary btn-sm mt-5" role="button">new post</a>
     </div>
 </div>
-
 {% if blogs %}
-    {% for blog in blogs %}
-        <div class="row border-bottom">
-            <div class="col-2">
-                {% if loop.index == 1 %}
-                <h3 class="display-5">Date</h3>
-                {% endif %}
-
-                <a href="/blog/{{blog.id}}">
-                    {{moment(blog.create_date).calendar()}}
-                </a>
+    <div class="row">
+        {% for blog in blogs %}
+            <div class="col-4">
+                {% if blog.image %}
+                    <img class="img-thumbnail img-fluid" width="200" src="data:image;base64,{{base64encode(blog.image.read())}}"> <br>
+                {% else %}
+                    <img class="img-thumbnail" width = "100" src="/static/bdog.png">
+                {% endif %} 
+                style: <a href="/blog/{{blog.id}}">{{blog.subject}}</a> <br>
+                price: {{blog.content}} <br> 
+                size: {{blog.tag}}
             </div>
-            <div class="col-2">
-                {% if loop.index == 1 %}
-                <h3 class="display-5">User</h3>
-                {% endif %}
-                {{blog.author.fname}} {{blog.author.lname}}
-            </div>
-            <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Subject</h3>
-                {% endif %}
-                {{blog.subject}}
-            </div>
-        </div>
-    {% endfor %}
-{% else %}
-    <h1>No Blogs</h1>
+        {% endfor %}
+    </div>
 {% endif %}
+
+
 
 {% endblock %}
